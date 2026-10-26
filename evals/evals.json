@@ -1,0 +1,41 @@
+{
+  "skill_name": "terminals",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Open a new terminal in this OpenCode conversation.",
+      "expected_output": "The first operational call uses the bundled helper to create exactly one persistent terminal. Report its ID/directory without tool discovery, docs searches, package probes, or client reconstruction.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I used our shared terminal. Can you read what I typed?",
+      "expected_output": "Use the already identified terminal, or list this session to identify it, then read via the helper. No creation, input, controller takeover, or capability-investigation preamble. If several terminals are ambiguous, ask which one.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Run printf 'hello from the agent\\n' in the same terminal. I have left it at an empty shell prompt.",
+      "expected_output": "Read the shared terminal, invoke helper run with its existing ID, verify the actual output, and leave the terminal running. No new client code or discovery. Preserve directory and shell state; do not claim an unobserved exit code.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "The last terminal send timed out after sending. Try that command again.",
+      "expected_output": "Read the current terminal first and check whether the previous command executed before resending. Do not automatically duplicate potentially completed or still-running work.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "open the shell inside the wordpress container",
+      "expected_output": "Read the shared terminal first and adopt the environment its prompt shows (for example an ssh host and a docker exec shell already open there), then act inside that environment. Do not inspect or start local docker containers from the shell tool, do not ask which container when the screen or a read answers it, and do not ask whether a terminal was meant.",
+      "files": []
+    },
+    {
+      "id": 6,
+      "prompt": "I'm in my own terminal on my laptop and I see permission denied when I ssh to the server. What should I check?",
+      "expected_output": "Do not treat this as one of the conversation's terminal tabs, and do not create or take control of a terminal to imitate it. Answer from the described symptoms, optionally offering to reproduce it in a shared terminal.",
+      "files": []
+    }
+  ]
+}
