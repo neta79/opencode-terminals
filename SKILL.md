@@ -66,11 +66,16 @@ local shell to imitate it, and do not silently operate the wrong tab.
 
 ## Act immediately
 
-Resolve `SCRIPT` to `scripts/terminals.mjs` under this skill's base directory.
-For this installation:
+Resolve `SCRIPT` to `scripts/terminals.mjs` relative to the directory containing
+this `SKILL.md`. Use the base directory supplied when the skill is loaded; do
+not assume a location under `$HOME` or resolve it from the working directory.
+In the examples below, replace `/absolute/path/to/skill` with that supplied base
+directory (`SKILL_DIR` is a shell variable you set, not a predefined environment
+variable):
 
 ```sh
-SCRIPT="$HOME/.agents/skills/terminals/scripts/terminals.mjs"
+SKILL_DIR="/absolute/path/to/skill"
+SCRIPT="$SKILL_DIR/scripts/terminals.mjs"
 ```
 
 Your first operational tool call should use this helper to perform the
@@ -219,5 +224,5 @@ services, change configuration, or search documentation as routine recovery.
 Tests for maintainers (not a prerequisite to using the skill):
 
 ```sh
-node --test "$HOME/.agents/skills/terminals/scripts/terminals.test.mjs"
+node --test "$SKILL_DIR/scripts/terminals.test.mjs"
 ```
